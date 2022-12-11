@@ -5,6 +5,8 @@
     return document.querySelector(target);
   };
 
+  const $todos = get(".task-list");
+
   const createTodoElement = (item) => {
     const { id, content } = item;
     const $todoItem = document.createElement("div");
@@ -39,6 +41,25 @@
     return $todoItem;
   };
 
-  const init = () => {};
+  const renderAllToDos = (todos) => {
+    $todos.innerHTML = "";
+    todos.forEach((item) => {
+      const todoElement = createTodoElement(item);
+      $todos.appendChild(todoElement);
+    });
+  };
+
+  const getToDos = () => {
+    fetch("http://localhost:3000/todos")
+      .then((response) => response.json())
+      .then((todos) => renderAllToDos(todos))
+      .catch((error) => console.error(error)); // catch로 에러핸들링
+  };
+
+  const init = () => {
+    window.addEventListener("DOMContentLoaded", () => {
+      getToDos();
+    });
+  };
   init();
 })();

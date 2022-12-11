@@ -6,6 +6,7 @@ body {
 }
 
 .container {
+  padding: 50px;
   background-color: white;
   min-height: 100vh;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
@@ -13,9 +14,22 @@ body {
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
+button {
+  outline: 0;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button > i {
+  pointer-events: none;
+}
+
 .task-area {
   border: 1px solid lightblue;
-  margin: 1em;
+  margin-top: 30px;
 }
 
 .task-tabs {
@@ -29,7 +43,7 @@ body {
   cursor: pointer;
 }
 
-.task {
+.item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -38,7 +52,7 @@ body {
   position: relative;
 }
 
-.task span {
+.item span {
   padding: 1em;
 }
 
@@ -89,4 +103,97 @@ body {
   border: none;
   color: lightgray;
   padding-right: 4em;
+}
+.todo_form {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  width: 30%;
+}
+
+.todo_input {
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 14px;
+  background-color: #f6f6f6;
+  border-radius: 8px;
+  border: 1px solid lightgray;
+}
+
+.todo_add_button {
+  background-color: #9dc0e8;
+  color: #fff;
+  width: 80px;
+  margin-left: 12px;
+  font-size: 22px;
+  border-radius: 8px;
+}
+
+.task-list {
+  padding: 0 10px;
+  overflow: auto;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.content > input[type="checkbox"] {
+  transform: scale(1.5);
+  margin-left: 10px;
+}
+
+.content > label {
+  font-size: 16px;
+  margin-left: 20px;
+  padding-top: 4px;
+  width: 100%;
+}
+
+.content > input[type="text"] {
+  font-size: 16px;
+  margin-left: 20px;
+  padding-top: 4px;
+  padding-left: 0;
+  width: 100%;
+}
+
+.item_buttons {
+  width: 118px;
+}
+
+.item_buttons > button {
+  width: 42px;
+  height: 42px;
+  color: #555555;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+.item_buttons > button:first-child {
+  background-color: #bad4f5;
+  margin-right: 8px;
+}
+
+.todo_checkbox {
+  appearance: auto !important;
+}
+
+.item input[type="text"] {
+  display: none;
+}
+
+.edit_buttons {
+  display: none;
 }
