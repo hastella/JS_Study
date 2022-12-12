@@ -1,8 +1,11 @@
-## To do list
+## To do list (Json Server를 이용하여 구현)
 
-- 투두리스트 구현
-- json-server를 활용해서 로컬에 REST API 구축 및 연동
 - 기본적인 데이터 처리인 생성, 읽기, 수정, 삭제(CRUD)를 구현
+
+
+![Screen Shot 2022-12-12 at 3 55 24 PM](https://user-images.githubusercontent.com/66244752/206980348-57d897eb-41c3-48ff-a584-e2ca9714d03d.png)
+
+
 
 ### strict mode
 
