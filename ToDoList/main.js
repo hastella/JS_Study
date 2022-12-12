@@ -133,7 +133,7 @@
       $editInput.style.display = "none";
       $contentButtons.style.display = "block";
       $editButtons.style.display = "none";
-      $editInput.value = $label.innerText;
+      $editInput.value = $label.innerText; // 캔슬 버튼 누르고 다시 수정 버튼을 눌렀을때 수정 이전의 원래 값을 렌더링해준다
     }
   };
 
@@ -155,6 +155,18 @@
       .catch((error) => console.error(error));
   };
 
+  const deleteToDo = (e) => {
+    if (e.target.className !== "todo_remove_button") return;
+    const $item = e.target.closest(".item");
+    const id = $item.dataset.id;
+
+    fetch(`${URL}/${id}`, {
+      method: "DELETE",
+    })
+      .then(getToDos)
+      .catch((error) => console.error(error));
+  };
+
   const init = () => {
     window.addEventListener("DOMContentLoaded", () => {
       getToDos();
@@ -163,6 +175,7 @@
     $todos.addEventListener("click", toggleToDo);
     $todos.addEventListener("click", changeEditMode);
     $todos.addEventListener("click", editToDo);
+    $todos.addEventListener("click", deleteToDo);
   };
   init();
 })();
