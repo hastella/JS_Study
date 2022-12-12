@@ -108,12 +108,61 @@
       .catch((error) => console.error(error.message));
   };
 
+  const changeEditMode = (e) => {
+    const $item = e.target.closest(".item");
+    const $label = $item.querySelector("label");
+    const $editInput = $item.querySelector('input[type="text"]');
+    const $contentButtons = $item.querySelector(".content_buttons");
+    const $editButtons = $item.querySelector(".edit_buttons");
+    const value = $editInput.value;
+
+    if (e.target.className === "todo_edit_button") {
+      // 수정 버튼 action주기
+      $label.style.display = "none";
+      $editInput.style.display = "block";
+      $contentButtons.style.display = "none";
+      $editButtons.style.display = "block";
+      $editInput.focus(); // 수정 버튼을 눌렀을때 커서가 focus 되도록
+      $editInput.value = "";
+      $editInput.value = value; // 커서가 맨 앞에 뜨는것이 아닌 content 뒤에서 뜰수 있도록 구현
+    }
+
+    if (e.target.className === "todo_edit_cancel_button") {
+      // 캔슬 버튼 action주기
+      $label.style.display = "block";
+      $editInput.style.display = "none";
+      $contentButtons.style.display = "block";
+      $editButtons.style.display = "none";
+      $editInput.value = $label.innerText;
+    }
+  };
+
+  const editToDo = (e) => {
+    if (e.target.className !== "todo_edit_confirm_button") return;
+    const $item = e.target.closest(".item");
+    const id = $item.dataset.id;
+    const $editInput = $item.querySelector('input[type="text"]');
+    const content = $editInput.value;
+
+    fetch(`${URL}/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ content }), // 변경할 값만 작성해준다
+    })
+      .then(getToDos)
+      .catch((error) => console.error(error));
+  };
+
   const init = () => {
     window.addEventListener("DOMContentLoaded", () => {
       getToDos();
     });
     $form.addEventListener("submit", addToDo);
     $todos.addEventListener("click", toggleToDo);
+    $todos.addEventListener("click", changeEditMode);
+    $todos.addEventListener("click", editToDo);
   };
   init();
 })();

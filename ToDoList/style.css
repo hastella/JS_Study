@@ -189,6 +189,12 @@ button > i {
 
 .item input[type="text"] {
   display: none;
+  border: none;
+  width: 50%;
+  height: 35px;
+  text-indent: 10px;
+  outline: 1px solid lightgray;
+  border-radius: 5px;
 }
 
 .edit_buttons {
