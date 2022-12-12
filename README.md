@@ -2,7 +2,9 @@
 
 - 기본적인 데이터 처리인 생성, 읽기, 수정, 삭제(CRUD)를 구현
 
+
 ![Screen Shot 2022-12-12 at 3 55 24 PM](https://user-images.githubusercontent.com/66244752/206980348-57d897eb-41c3-48ff-a584-e2ca9714d03d.png)
+
 
 
 ### strict mode
