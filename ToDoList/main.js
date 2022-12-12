@@ -5,7 +5,10 @@
     return document.querySelector(target);
   };
 
+  const URL = "http://localhost:3000/todos";
   const $todos = get(".task-list");
+  const $form = get(".todo_form");
+  const $input = get(".todo_input");
 
   const createTodoElement = (item) => {
     const { id, content } = item;
@@ -50,15 +53,36 @@
   };
 
   const getToDos = () => {
-    fetch("http://localhost:3000/todos")
+    fetch(URL)
       .then((response) => response.json())
       .then((todos) => renderAllToDos(todos))
       .catch((error) => console.error(error)); // catch로 에러핸들링
   };
 
+  const addToDo = (e) => {
+    e.preventDefault(); // 인풋 submit시 새로고침 방지
+    const todo = {
+      content: $input.value,
+      completed: false,
+    };
+    console.log($input.value);
+    fetch(URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(todo),
+    });
+  };
+
   const init = () => {
     window.addEventListener("DOMContentLoaded", () => {
       getToDos();
+    });
+    $form.addEventListener("submit", addToDo);
+    $input.addEventListener("focus", function () {
+      // 인풋 클릭하면 값 리셋시키기
+      $input.value = "";
     });
   };
   init();
